@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>malam sayang aku</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    .container {
+   background: rgba(255, 255, 255, 0.9);
+  margin-top: 5%;
+}
+</style>
+<body>
+    <div class="container">
+    <h1>selamat malam sayang aku</h1>
+    <p></p>
+    <body>
+        <div class="container">
+            <form action="index1.html" method="GET" onsubmit="validateName(event)">
+                <button type="submit">disini sayanggg</button>
+            </form>
+        </div>
+    </body>
+  </div>
+  <script src="script.js"></script>
+  <script>
+  function setupMusic() {
+    const music = document.getElementById('backgroundMusic');
+    
+    const isMusicPlaying = localStorage.getItem('musicPlaying') === 'true';
+    const musicCurrentTime = localStorage.getItem('musicCurrentTime') || 0;
+
+    if (isMusicPlaying) {
+        music.currentTime = parseFloat(musicCurrentTime);
+    }
+
+    music.addEventListener('play', () => {
+        localStorage.setItem('musicPlaying', 'true');
+    });
+
+    music.addEventListener('pause', () => {
+        localStorage.setItem('musicPlaying', 'false');
+    });
+
+    setInterval(() => {
+        localStorage.setItem('musicCurrentTime', music.currentTime);
+    }, 1000);
+
+    document.addEventListener('click', function startMusic() {
+        music.play().catch(error => {
+            console.log('Autoplay prevented', error);
+        });
+        document.removeEventListener('click', startMusic);
+    });
+}
+
+    document.addEventListener('DOMContentLoaded', setupMusic);
+</script>
+</body>
+</html>
